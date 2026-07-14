@@ -45,48 +45,149 @@
                 <h1>{{ soil_health }}%</h1>
             </div>
 
-            <div class="card">
-                <h3>Nitrogen</h3>
-                <p>{{ nitrogen }} / 300 kg/ha</p>
-            </div>
+            <div class="dashboard-grid">
 
-            <div class="card">
-                <h3>Phosphorus</h3>
-                <p>{{ phosphorus }} / 60 kg/ha</p>
-            </div>
+<div class="card">
+<h2>🌱 Soil Health</h2>
+<h1>{{ soil_health }}%</h1>
+</div>
 
-            <div class="card">
-                <h3>Potassium</h3>
-                <p>{{ potassium }} / 280 kg/ha</p>
-            </div>
+<div class="card">
+<h3>🌿 Nitrogen</h3>
 
-            <div class="card">
-                <h3>Sulfur</h3>
-                <p>{{ sulfur }} / 20 kg/ha</p>
-            </div>
+{% if nitrogen >= 240 %}
+<p style="color:limegreen;"><b>{{ nitrogen }}/300 kg/ha ✅ Excellent</b></p>
 
-            <div class="card">
-                <h3>Organic Carbon</h3>
-                <p>{{ organic }}%</p>
-            </div>
+{% elif nitrogen >= 180 %}
+<p style="color:orange;"><b>{{ nitrogen }}/300 kg/ha ⚠ Medium</b></p>
 
-            <div class="card">
-                <h3>Zinc</h3>
-                <p>{{ zinc }} ppm</p>
-            </div>
+{% else %}
+<p style="color:red;"><b>{{ nitrogen }}/300 kg/ha ❌ Low</b></p>
 
-            <div class="card">
-                <h3>Iron</h3>
-                <p>{{ iron }} ppm</p>
-            </div>
+{% endif %}
 
-            <div class="card">
-                <h3>Soil pH</h3>
-                <p>{{ ph }}</p>
-            </div>
+</div>
 
-        </div>
+<div class="card">
+<h3>🟣 Phosphorus</h3>
 
+{% if phosphorus >= 48 %}
+<p style="color:limegreen;"><b>{{ phosphorus }}/60 kg/ha ✅ Excellent</b></p>
+
+{% elif phosphorus >= 36 %}
+<p style="color:orange;"><b>{{ phosphorus }}/60 kg/ha ⚠ Medium</b></p>
+
+{% else %}
+<p style="color:red;"><b>{{ phosphorus }}/60 kg/ha ❌ Low</b></p>
+
+{% endif %}
+
+</div>
+
+<div class="card">
+<h3>🟠 Potassium</h3>
+
+{% if potassium >= 224 %}
+<p style="color:limegreen;"><b>{{ potassium }}/280 kg/ha ✅ Excellent</b></p>
+
+{% elif potassium >= 168 %}
+<p style="color:orange;"><b>{{ potassium }}/280 kg/ha ⚠ Medium</b></p>
+
+{% else %}
+<p style="color:red;"><b>{{ potassium }}/280 kg/ha ❌ Low</b></p>
+
+{% endif %}
+
+</div>
+
+<div class="card">
+<h3>🟡 Sulfur</h3>
+
+{% if sulfur >= 16 %}
+<p style="color:limegreen;"><b>{{ sulfur }}/20 kg/ha ✅ Excellent</b></p>
+
+{% elif sulfur >= 12 %}
+<p style="color:orange;"><b>{{ sulfur }}/20 kg/ha ⚠ Medium</b></p>
+
+{% else %}
+<p style="color:red;"><b>{{ sulfur }}/20 kg/ha ❌ Low</b></p>
+
+{% endif %}
+
+</div>
+
+<div class="card">
+<h3>⚫ Organic Carbon</h3>
+
+{% if organic >= 0.8 %}
+<p style="color:limegreen;"><b>{{ organic }}% ✅ Excellent</b></p>
+
+{% elif organic >= 0.5 %}
+<p style="color:orange;"><b>{{ organic }}% ⚠ Medium</b></p>
+
+{% else %}
+<p style="color:red;"><b>{{ organic }}% ❌ Low</b></p>
+
+{% endif %}
+
+</div>
+
+<div class="card">
+<h3>🔵 Zinc</h3>
+
+{% if zinc >= 1.0 %}
+<p style="color:limegreen;"><b>{{ zinc }} ppm ✅ Excellent</b></p>
+
+{% elif zinc >= 0.7 %}
+<p style="color:orange;"><b>{{ zinc }} ppm ⚠ Medium</b></p>
+
+{% else %}
+<p style="color:red;"><b>{{ zinc }} ppm ❌ Low</b></p>
+
+{% endif %}
+
+</div>
+
+<div class="card">
+<h3>🟤 Iron</h3>
+
+{% if iron >= 4 %}
+<p style="color:limegreen;"><b>{{ iron }} ppm ✅ Excellent</b></p>
+
+{% elif iron >= 3 %}
+<p style="color:orange;"><b>{{ iron }} ppm ⚠ Medium</b></p>
+
+{% else %}
+<p style="color:red;"><b>{{ iron }} ppm ❌ Low</b></p>
+
+{% endif %}
+
+</div>
+
+<div class="card">
+
+<h2>🤖 AI Soil Advisory</h2>
+
+{% if nitrogen < 180 %}
+<p>⚠ Nitrogen is low. Apply Urea fertilizer.</p>
+
+{% elif phosphorus < 36 %}
+<p>⚠ Phosphorus is low. Apply DAP fertilizer.</p>
+
+{% elif potassium < 168 %}
+<p>⚠ Potassium is low. Apply MOP fertilizer.</p>
+
+{% elif sulfur < 12 %}
+<p>⚠ Sulfur deficiency detected. Apply Gypsum.</p>
+
+{% else %}
+<p>✅ Your soil is healthy. No major deficiencies detected.</p>
+
+{% endif %}
+
+</div>
+
+</div>
     </main>
 
 </div>
