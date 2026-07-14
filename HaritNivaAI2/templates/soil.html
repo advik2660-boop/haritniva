@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Soil Analyzer - HaritNiva AI</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-top">
+            <h2 class="logo">🌿 HaritNiva AI</h2>
+            <p class="logo-subtitle">Smart Farming</p>
+        </div>
+
+        <nav>
+            <a href="/">🏠 Dashboard</a>
+            <a href="/weather">🌦 Weather</a>
+            <a href="/crop">🌱 Crop Recommendation</a>
+            <a href="/soil" class="active">🧪 Soil Analyzer</a>
+            <a href="/disease">🦠 Disease Detection</a>
+            <a href="/weed">🌾 Weed Detection</a>
+            <a href="/harvest">🌾 Harvest Planner</a>
+            <a href="/market">📈 Market Prices</a>
+            <a href="/budget">💰 Budget Tracker</a>
+        </nav>
+
+    </aside>
+
+    <main class="main-content">
+
+        <div class="welcome">
+            <h1>🧪 Soil Analyzer</h1>
+            <p>Current soil nutrient analysis</p>
+        </div>
+
+        <div class="dashboard-grid">
+
+            <div class="card">
+                <h2>🌱 Soil Health</h2>
+                <h1>{{ soil_health }}%</h1>
+            </div>
+
+            <div class="card">
+                <h3>Nitrogen</h3>
+                <p>{{ nitrogen }} / 300 kg/ha</p>
+            </div>
+
+            <div class="card">
+                <h3>Phosphorus</h3>
+                <p>{{ phosphorus }} / 60 kg/ha</p>
+            </div>
+
+            <div class="card">
+                <h3>Potassium</h3>
+                <p>{{ potassium }} / 280 kg/ha</p>
+            </div>
+
+            <div class="card">
+                <h3>Sulfur</h3>
+                <p>{{ sulfur }} / 20 kg/ha</p>
+            </div>
+
+            <div class="card">
+                <h3>Organic Carbon</h3>
+                <p>{{ organic }}%</p>
+            </div>
+
+            <div class="card">
+                <h3>Zinc</h3>
+                <p>{{ zinc }} ppm</p>
+            </div>
+
+            <div class="card">
+                <h3>Iron</h3>
+                <p>{{ iron }} ppm</p>
+            </div>
+
+            <div class="card">
+                <h3>Soil pH</h3>
+                <p>{{ ph }}</p>
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

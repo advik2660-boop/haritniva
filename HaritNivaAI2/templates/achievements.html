@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Achievements</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<h2 class="logo">🌿 HaritNiva AI</h2>
+
+<nav>
+
+<a href="/">🏠 Dashboard</a>
+<a href="/weather">🌦 Weather</a>
+<a href="/crop">🌱 Crop Recommendation</a>
+<a href="/disease">🦠 Disease Detection</a>
+<a href="/weed">🌾 Weed Detection</a>
+<a href="/harvest">🌾 Harvest Planner</a>
+<a href="/market">📈 Market Prices</a>
+<a href="/budget">💰 Budget Tracker</a>
+<a href="/tasks">📅 Task Manager</a>
+<a href="/achievements" class="active">🏆 Achievements</a>
+<a href="/soil">🌱 Soil Analyzer</a>
+</nav>
+
+</aside>
+
+<main class="main-content">
+<div id="google_translate_element"></div>
+<h1>🏆 Your Achievements</h1>
+
+<p>
+Unlock badges by using different HaritNiva AI features.
+</p>
+
+<hr>
+
+{% set total = achievements|length %}
+{% set earned = achievements|selectattr("earned")|list|length %}
+{% set percent = (earned * 100 / total)|round|int %}
+
+<div class="card">
+
+<h2>Overall Progress</h2>
+
+<h3>{{ earned }} / {{ total }} Achievements Unlocked</h3>
+
+<progress value="{{ earned }}" max="{{ total }}" style="width:100%;height:25px;"></progress>
+
+<p>{{ percent }}% Complete</p>
+
+</div>
+
+<br>
+
+{% for achievement in achievements %}
+
+<div class="card">
+
+<h2>{{ achievement.title }}</h2>
+
+{% if achievement.earned %}
+
+<p style="color:green;font-size:18px;">
+✅ Unlocked
+</p>
+
+{% else %}
+
+<p style="color:#999;font-size:18px;">
+🔒 Locked
+</p>
+
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+</main>
+
+</div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,pa',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+if(localStorage.getItem("theme")==="dark"){
+    document.body.classList.add("dark-mode");
+}
+</script>
+</body>
+
+</html>

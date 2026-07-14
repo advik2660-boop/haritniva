@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Weather | HaritNiva AI</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-top">
+
+            <h2 class="logo">
+                🌿 HaritNiva AI
+            </h2>
+
+            <p class="logo-subtitle">
+                Smart Farming
+            </p>
+
+        </div>
+
+        <nav>
+
+            <nav>
+
+<a href="/">🏠 Dashboard</a>
+
+<a href="/weather">🌦 Weather</a>
+
+<a href="/crop">🌱 Crop Recommendation</a>
+
+<a href="/disease">🦠 Disease Detection</a>
+
+<a href="/weed">🌾 Weed Detection</a>
+
+<a href="/harvest">🌾 Harvest Planner</a>
+
+<a href="/market">📈 Market Prices</a>
+
+<a href="/budget">💰 Budget Tracker</a>
+<a href="/soil">🌱 Soil Analyzer</a>
+</nav>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main-content">
+<div id="google_translate_element"></div>
+        <section class="welcome">
+
+            <h1>
+                🌦 Weather Report
+            </h1>
+
+            <p>
+
+                Farm Location :
+
+                <strong>{{ farmer[4] }}</strong>
+
+            </p>
+
+        </section>
+
+        {% if weather.success %}
+
+        <section class="cards">
+
+            <div class="card">
+
+                <h3>🌡 Temperature</h3>
+
+                <p>{{ weather.temperature }} °C</p>
+
+            </div>
+            <div class="card">
+
+              <h3>☁ Weather</h3>
+
+              <p>{{ weather.weather }}</p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>💧 Humidity</h3>
+
+                <p>{{ weather.humidity }} %</p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>🌬 Wind Speed</h3>
+
+                <p>{{ weather.wind }} km/h</p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>🌧 Rain Chance</h3>
+
+                <p>{{ weather.rain }} %</p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>🌅 Sunrise</h3>
+
+                <p>{{ weather.sunrise }}</p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>🌇 Sunset</h3>
+
+                <p>{{ weather.sunset }}</p>
+
+            </div>
+
+        </section>
+
+        <section class="productivity">
+
+            <h2>
+
+                🌱 Weather Advisory
+
+            </h2>
+
+            <div class="productivity-card">
+
+                <p style="font-size:18px;">
+
+                    {{ weather.advisory }}
+
+                </p>
+
+            </div>
+
+        </section>
+
+        {% else %}
+
+        <section class="productivity">
+
+            <div class="productivity-card">
+
+                <h2>
+
+                    {{ weather.message }}
+
+                </h2>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+    </main>
+
+</div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,pa',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+if(localStorage.getItem("theme")==="dark"){
+    document.body.classList.add("dark-mode");
+}
+</script>
+</body>
+
+</html>

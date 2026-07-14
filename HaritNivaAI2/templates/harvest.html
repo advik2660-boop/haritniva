@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Harvest Planner</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<h2 class="logo">🌿 HaritNiva AI</h2>
+
+<nav>
+
+<nav>
+
+<a href="/">🏠 Dashboard</a>
+
+<a href="/weather">🌦 Weather</a>
+
+<a href="/crop">🌱 Crop Recommendation</a>
+
+<a href="/disease">🦠 Disease Detection</a>
+
+<a href="/weed">🌾 Weed Detection</a>
+
+<a href="/harvest">🌾 Harvest Planner</a>
+
+<a href="/market">📈 Market Prices</a>
+
+<a href="/budget">💰 Budget Tracker</a>
+<a href="/soil">🌱 Soil Analyzer</a>
+</nav>
+
+</aside>
+
+<main class="main-content">
+<div id="google_translate_element"></div>
+<h1>🌾 Harvest Planner</h1>
+
+<form method="POST">
+
+<label>Select Crop</label>
+
+<select name="crop">
+
+<option>Wheat</option>
+
+<option>Rice</option>
+
+<option>Maize</option>
+
+<option>Cotton</option>
+
+<option>Sugarcane</option>
+
+<option>Mustard</option>
+
+<option>Potato</option>
+
+<option>Tomato</option>
+
+<option>Onion</option>
+
+<option>Gram</option>
+
+<option>Bajra</option>
+
+</select>
+
+<br><br>
+
+<label>Planting Date</label>
+
+<input
+type="date"
+name="planting_date"
+required>
+
+<br><br>
+
+<button type="submit">
+
+Calculate Harvest
+
+</button>
+
+</form>
+
+{% if result %}
+
+<hr>
+
+<div class="card">
+
+<h2>🌾 Harvest Prediction</h2>
+
+<p>
+
+<b>Expected Harvest Date</b>
+
+<br>
+
+{{ result.harvest_date }}
+
+</p>
+
+<p>
+
+<b>Days Remaining</b>
+
+<br>
+
+{{ result.remaining }}
+
+</p>
+
+<p>
+
+<b>Current Stage</b>
+
+<br>
+
+{{ result.stage }}
+
+</p>
+
+<p>
+
+<b>Confidence</b>
+
+<br>
+
+{{ result.confidence }}%
+
+</p>
+
+{% if result.confidence >= 90 %}
+
+<progress
+value="{{ result.confidence }}"
+max="100"
+style="width:100%;height:20px;">
+</progress>
+
+{% endif %}
+
+</div>
+
+{% endif %}
+
+</main>
+
+</div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,pa',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+if(localStorage.getItem("theme")==="dark"){
+    document.body.classList.add("dark-mode");
+}
+</script>
+</body>
+
+</html>

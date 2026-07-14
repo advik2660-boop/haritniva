@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Farm Profit Simulator</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<h2 class="logo">🌿 HaritNiva AI</h2>
+
+<nav>
+
+<nav>
+
+<a href="/">🏠 Dashboard</a>
+
+<a href="/weather">🌦 Weather</a>
+
+<a href="/crop">🌱 Crop Recommendation</a>
+
+<a href="/disease">🦠 Disease Detection</a>
+
+<a href="/weed">🌾 Weed Detection</a>
+
+<a href="/harvest">🌾 Harvest Planner</a>
+
+<a href="/market">📈 Market Prices</a>
+
+<a href="/budget">💰 Budget Tracker</a>
+<a href="/soil">🌱 Soil Analyzer</a>
+</nav>
+
+</aside>
+
+<main class="main-content">
+<div id="google_translate_element"></div>
+<h1>💰 Farm Profit Simulator</h1>
+
+<form method="POST">
+
+<label>Land Area (Acres)</label>
+<input type="number" step="0.1" name="acres" required>
+
+<br><br>
+
+<label>Expected Yield (kg per acre)</label>
+<input type="number" step="0.1" name="yield" required>
+
+<br><br>
+
+<label>Selling Price (₹ per kg)</label>
+<input type="number" step="0.1" name="price" required>
+
+<br><br>
+
+<label>Seed Cost per Acre (₹)</label>
+<input type="number" name="seed" required>
+
+<br><br>
+
+<label>Fertilizer Cost per Acre (₹)</label>
+<input type="number" name="fertilizer" required>
+
+<br><br>
+
+<label>Labour Cost per Acre (₹)</label>
+<input type="number" name="labour" required>
+
+<br><br>
+
+<button type="submit">
+
+Calculate Profit
+
+</button>
+
+</form>
+
+{% if result %}
+
+<hr>
+
+<div class="card">
+
+<h2>📊 Profit Analysis</h2>
+
+<p><b>Total Yield:</b> {{ result.yield }} kg</p>
+
+<p><b>Total Revenue:</b> ₹{{ result.revenue }}</p>
+
+<p><b>Total Expenses:</b> ₹{{ result.expenses }}</p>
+
+<h2 style="color:green">
+
+💰 Net Profit
+
+₹{{ result.profit }}
+
+</h2>
+
+<p><b>Profit Margin:</b> {{ result.margin }}%</p>
+
+<progress
+value="{{ result.margin }}"
+max="100"
+style="width:100%;height:22px;">
+</progress>
+
+<br><br>
+
+<div class="card">
+
+{{ result.advice }}
+
+</div>
+
+</div>
+
+{% endif %}
+
+</main>
+
+</div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,pa',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+if(localStorage.getItem("theme")==="dark"){
+    document.body.classList.add("dark-mode");
+}
+</script>
+</body>
+
+</html>
