@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Weed Detection</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<h2 class="logo">🌿 HaritNiva AI</h2>
+
+<nav>
+
+<nav>
+
+<a href="/">🏠 Dashboard</a>
+
+<a href="/weather">🌦 Weather</a>
+
+<a href="/crop">🌱 Crop Recommendation</a>
+
+<a href="/disease">🦠 Disease Detection</a>
+
+<a href="/weed">🌾 Weed Detection</a>
+
+<a href="/harvest">🌾 Harvest Planner</a>
+
+<a href="/market">📈 Market Prices</a>
+
+<a href="/budget">💰 Budget Tracker</a>
+<a href="/soil">🌱 Soil Analyzer</a>
+</nav>
+
+</aside>
+
+<main class="main-content">
+<div id="google_translate_element"></div>
+<h1>🌾 AI Weed Detection</h1>
+
+<form method="POST">
+
+<label>Select Weed</label>
+
+<select name="weed" required>
+
+<option>Parthenium</option>
+
+<option>Nut Grass</option>
+
+<option>Wild Oats</option>
+
+<option>Pigweed</option>
+
+<option>No Weed</option>
+
+</select>
+
+<br><br>
+
+<button type="submit">
+
+Analyze Weed
+
+</button>
+
+</form>
+
+{% if result %}
+
+<hr>
+
+<div class="card">
+
+<h2>🌿 Analysis Result</h2>
+
+<p>
+
+<b>Detected Weed</b><br>
+
+{{ result.name }}
+
+</p>
+
+<p>
+
+<b>Severity</b><br>
+
+{{ result.severity }}
+
+</p>
+
+<p>
+
+<b>AI Confidence</b><br>
+
+{{ result.confidence }}%
+
+</p>
+
+<progress
+value="{{ result.confidence }}"
+max="100"
+style="width:100%;height:22px;">
+</progress>
+
+<br><br>
+
+<p>
+
+<b>Recommended Control</b><br>
+
+{{ result.control }}
+
+</p>
+
+{% if result.severity == "High" %}
+
+<div style="background:#ffe5e5;padding:15px;border-radius:10px;margin-top:15px;">
+
+⚠ Immediate action is recommended to prevent crop damage.
+
+</div>
+
+{% elif result.severity == "Medium" %}
+
+<div style="background:#fff7d6;padding:15px;border-radius:10px;margin-top:15px;">
+
+⚠ Monitor the field and control the weed as soon as possible.
+
+</div>
+
+{% else %}
+
+<div style="background:#e8ffe8;padding:15px;border-radius:10px;margin-top:15px;">
+
+✅ No major weed threat detected.
+
+</div>
+
+{% endif %}
+
+</div>
+
+{% endif %}
+
+</main>
+
+</div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,pa',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+if(localStorage.getItem("theme")==="dark"){
+    document.body.classList.add("dark-mode");
+}
+</script>
+</body>
+
+</html>

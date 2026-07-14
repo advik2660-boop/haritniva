@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Market Prices</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<h2 class="logo">🌿 HaritNiva AI</h2>
+
+<nav>
+
+<nav>
+
+<a href="/">🏠 Dashboard</a>
+
+<a href="/weather">🌦 Weather</a>
+
+<a href="/crop">🌱 Crop Recommendation</a>
+
+<a href="/disease">🦠 Disease Detection</a>
+
+<a href="/weed">🌾 Weed Detection</a>
+
+<a href="/harvest">🌾 Harvest Planner</a>
+
+<a href="/market">📈 Market Prices</a>
+
+<a href="/budget">💰 Budget Tracker</a>
+<a href="/soil">🌱 Soil Analyzer</a>
+</nav>
+
+</aside>
+
+<main class="main-content">
+<div id="google_translate_element"></div>
+<h1>📈 Market Prices</h1>
+
+<form method="POST">
+
+<label>Select Crop</label>
+
+<select name="crop" required>
+
+<option>Wheat</option>
+
+<option>Rice</option>
+
+<option>Maize</option>
+
+<option>Cotton</option>
+
+<option>Sugarcane</option>
+
+<option>Potato</option>
+
+<option>Tomato</option>
+
+</select>
+
+<br><br>
+
+<button type="submit">
+
+Check Price
+
+</button>
+
+</form>
+
+{% if result %}
+
+<hr>
+
+<div class="card">
+
+<h2>🌾 {{ result.crop }}</h2>
+
+<p><b>Current Price</b></p>
+
+<h1>₹ {{ result.price }}/{{ result.unit }}</h1>
+
+<p><b>Market:</b> {{ result.market }}</p>
+
+<p><b>State:</b> {{ result.state }}</p>
+
+<p><b>Last Updated:</b> {{ result.date }}</p>
+
+<p><b>AI Note:</b> {{ result.advice }}</p>
+
+</div>
+
+{% endif %}
+
+</main>
+
+</div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,pa',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+if(localStorage.getItem("theme")==="dark"){
+    document.body.classList.add("dark-mode");
+}
+</script>
+</body>
+
+</html>

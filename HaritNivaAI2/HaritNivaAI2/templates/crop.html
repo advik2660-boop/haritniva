@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Crop Recommendation</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<h2 class="logo">🌿 HaritNiva AI</h2>
+
+<nav>
+
+<nav>
+
+<a href="/">🏠 Dashboard</a>
+
+<a href="/weather">🌦 Weather</a>
+
+<a href="/crop">🌱 Crop Recommendation</a>
+
+<a href="/disease">🦠 Disease Detection</a>
+
+<a href="/weed">🌾 Weed Detection</a>
+
+<a href="/harvest">🌾 Harvest Planner</a>
+
+<a href="/market">📈 Market Prices</a>
+
+<a href="/budget">💰 Budget Tracker</a>
+<a href="/soil">🌱 Soil Analyzer</a>
+</nav>
+
+</aside>
+
+<main class="main-content">
+<div id="google_translate_element"></div>
+<h1>🌱 Smart Crop Recommendation</h1>
+
+<form method="POST">
+
+<label>Soil Type</label>
+
+<select name="soil" required>
+
+<option>Loamy</option>
+
+<option>Clay</option>
+
+<option>Sandy</option>
+
+<option>Black</option>
+
+<option>Red</option>
+
+</select>
+
+<br><br>
+
+<label>Water Availability</label>
+
+<select name="water" required>
+
+<option>Low</option>
+
+<option>Medium</option>
+
+<option>High</option>
+
+</select>
+
+<br><br>
+
+<label>Seed Budget Per Acre (₹)</label>
+
+<input
+type="number"
+name="seed_budget"
+required>
+
+<br><br>
+
+<label>Fertilizer Budget Per Acre (₹)</label>
+
+<input
+type="number"
+name="fertilizer_budget"
+required>
+
+<br><br>
+
+<label>Labour Budget Per Acre (₹)</label>
+
+<input
+type="number"
+name="labour_budget"
+required>
+
+<br><br>
+
+<label>Land Area (Acres)</label>
+
+<input
+type="number"
+name="land"
+min="0.1"
+step="0.1"
+required>
+
+<br><br>
+<label>Growing Duration</label>
+
+<select name="duration">
+
+<option>Short</option>
+
+<option>Medium</option>
+
+<option>Long</option>
+
+</select>
+
+<br><br>
+
+<button type="submit">
+
+Get Recommendation
+
+</button>
+
+</form>
+
+{% if recommendations %}
+
+<hr>
+
+<h2>Top Recommendations</h2>
+
+{% for crop in recommendations %}
+
+<div class="card">
+
+    <h2>🌱 {{ crop.name }}</h2>
+
+    <p><b>⭐ Confidence:</b> {{ crop.confidence }}%</p>
+
+    <p><b>💰 Gross Income:</b> ₹{{ "{:,.0f}".format(crop.gross_income) }}</p>
+
+    <p><b>🌱 Total Seed Cost:</b> ₹{{ "{:,.0f}".format(crop.seed_total) }}</p>
+
+    <p><b>🧪 Total Fertilizer Cost:</b> ₹{{ "{:,.0f}".format(crop.fertilizer_total) }}</p>
+
+    <p><b>👨‍🌾 Total Labour Cost:</b> ₹{{ "{:,.0f}".format(crop.labour_total) }}</p>
+
+    <hr>
+
+    <h3 style="color:green;">
+
+        💵 Estimated Net Profit:
+        ₹{{ "{:,.0f}".format(crop.net_profit) }}
+
+    </h3>
+
+    <p><b>💧 Water Requirement:</b> {{ crop.water }}</p>
+
+    <p><b>⏳ Growing Duration:</b> {{ crop.duration }}</p>
+
+    {% if crop.confidence < 60 %}
+
+    <div style="background:#ffe5e5;padding:12px;border-radius:8px;margin-top:10px;">
+
+        <b>⚠ Confidence below 60%</b><br>
+
+        Please review your inputs before choosing this crop.
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<br>
+
+{% endfor %}
+{% endif %}
+
+</main>
+
+</div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,pa',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+if(localStorage.getItem("theme")==="dark"){
+    document.body.classList.add("dark-mode");
+}
+</script>
+</body>
+
+</html>

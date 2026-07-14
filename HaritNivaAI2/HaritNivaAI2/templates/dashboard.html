@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HaritNiva AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-top">
+
+            <div class="logo-box">
+
+<img src="{{ url_for('static', filename='images/logo.jpeg') }}" class="logo-img">
+
+<h2 class="logo">
+HaritNiva AI
+</h2>
+
+<p class="logo-subtitle">
+AI Powered Smart Farming
+</p>
+
+</div>
+
+        </div>
+
+        <nav>
+
+            <a href="#" class="active">
+                🏠 Dashboard
+            </a>
+
+            <a href="/weather">
+                🌦 Weather
+            </a>
+
+            <a href="/crop">
+                🌱 Crop Recommendation
+            </a>
+
+            <a href="/disease">
+                🦠 Disease Detection
+            </a>
+
+            <a href="/weed">
+                🌾 Weed Detection
+            </a>
+
+        
+            <a href="/harvest">
+                🌾 Harvest Planner
+            </a>
+
+            <a href="/market">
+                📈 Market Prices
+            </a>
+
+            <a href="/budget">
+                💰 Budget Tracker
+            </a>
+<a href="/soil">🌱 Soil Analyzer</a>
+        </nav>
+
+    </aside>
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-content">
+<div id="google_translate_element"></div>
+        <!-- Welcome -->
+<div style="display:flex;justify-content:flex-end;margin-bottom:15px;">
+
+<label class="theme-switch">
+    <input type="checkbox" id="themeToggle">
+    <span class="slider"></span>
+</label>
+
+</div>
+        <section class="welcome">
+
+            <div>
+
+                <h1>
+                    Welcome Back, {{ farmer[0] }} 👋
+                </h1>
+
+                <p>
+                    Welcome to HaritNiva AI.
+                    Your smart farming assistant.
+                </p>
+
+            </div>
+
+        </section>
+
+<a href="/download-report">
+
+<button class="primary-btn">
+
+📄 Download Farm Report
+
+</button>
+
+</a>
+
+<br><br>
+
+<div class="dashboard-grid">
+
+<div class="card">
+
+<h2>🌡 Current Weather</h2>
+
+<h1>{{ weather_temp }}°C</h1>
+
+<p>{{ weather_desc }}</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>🌾 Best Crop Recommendation</h2>
+
+<h1>{{ best_crop }}</h1>
+
+<p>{{ confidence }}% Suitable</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>📋 Today's Tasks</h2>
+
+{% if tasks %}
+
+<ul class="task-list">
+
+{% for task in tasks[:5] %}
+
+<li>
+
+{% if task.done %}
+
+✅
+
+{% else %}
+
+☐
+
+{% endif %}
+
+{{ task.task }}
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+<p>No tasks added yet.</p>
+
+{% endif %}
+
+</div>
+
+
+
+<div class="card">
+
+<h2>🌱 Soil Health</h2>
+
+<h1>Coming Soon</h1>
+
+<p>
+
+AI Soil Analysis will be available in a future update.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>🌦 AI Weather Advisory</h2>
+
+<p>
+
+{{ advisory }}
+
+</p>
+
+</div>
+
+</div>
+
+        <!-- Farmer Information -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <h3>
+                    👨‍🌾 Farmer Name
+                </h3>
+
+                <p>
+                    {{ farmer[0] }}
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>
+                    🚜 Farm Name
+                </h3>
+
+                <p>
+                    {{ farmer[3] }}
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>
+                    📍 Farm Location
+                </h3>
+
+                <p>
+                    {{ farmer[4] }}
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- Productivity -->
+
+        <section class="productivity">
+
+            <h2>
+                Productivity
+            </h2>
+
+            <div class="productivity-grid">
+
+                <a href="/tasks" style="text-decoration:none;color:inherit;">
+
+<div class="productivity-card">
+
+<div class="emoji">
+📅
+</div>
+
+<h3>
+Tasks
+</h3>
+
+<p>
+Manage reminders and daily farm work.
+</p>
+
+</div>
+
+</a>
+                <a href="/chatbot" style="text-decoration:none;color:inherit;">
+
+<div class="productivity-card">
+
+<div class="emoji">
+🤖
+</div>
+
+<h3>
+AI Chatbot
+</h3>
+
+<p>
+Ask farming questions anytime.
+</p>
+
+</div>
+
+</a>
+
+                <a href="/achievements" style="text-decoration:none;color:inherit;">
+
+<div class="productivity-card">
+
+<div class="emoji">
+🏆
+</div>
+
+<h3>
+Achievements
+</h3>
+
+<p>
+View your farming badges.
+</p>
+
+</div>
+
+</a>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,pa',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+
+const toggle = document.getElementById("themeToggle");
+
+if(localStorage.getItem("theme") === "dark"){
+    document.body.classList.add("dark-mode");
+    toggle.checked = true;
+}
+
+toggle.addEventListener("change", function(){
+
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")){
+        localStorage.setItem("theme","dark");
+    }else{
+        localStorage.setItem("theme","light");
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Disease Detection</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<h2 class="logo">🌿 HaritNiva AI</h2>
+
+<nav>
+
+<nav>
+
+<a href="/">🏠 Dashboard</a>
+
+<a href="/weather">🌦 Weather</a>
+
+<a href="/crop">🌱 Crop Recommendation</a>
+
+<a href="/disease">🦠 Disease Detection</a>
+
+<a href="/weed">🌾 Weed Detection</a>
+
+<a href="/harvest">🌾 Harvest Planner</a>
+
+<a href="/market">📈 Market Prices</a>
+
+<a href="/budget">💰 Budget Tracker</a>
+<a href="/soil">🌱 Soil Analyzer</a>
+</nav>
+</aside>
+
+<main class="main-content">
+<div id="google_translate_element"></div>
+<h1>🩺 AI Disease Detector</h1>
+
+<form method="POST">
+
+<label>Select Plant Symptom</label>
+
+<select name="symptom">
+
+<option>Healthy</option>
+
+<option>Yellow Leaves</option>
+
+<option>Brown Spots</option>
+
+<option>White Powder</option>
+
+<option>Wilting</option>
+
+</select>
+
+<br><br>
+
+<button type="submit">
+
+Detect Disease
+
+</button>
+
+</form>
+
+{% if result %}
+
+<hr>
+
+<div class="card">
+
+<h2>🧬 AI Analysis</h2>
+
+<p>
+
+<b>Observed Symptom</b><br>
+
+{{ result.symptom }}
+
+</p>
+
+<p>
+
+<b>Detected Disease</b><br>
+
+{{ result.disease }}
+
+</p>
+
+<p>
+
+<b>Recommended Solution</b><br>
+
+{{ result.solution }}
+
+</p>
+
+<p>
+
+<b>Confidence</b><br>
+
+{{ result.confidence }}%
+
+</p>
+
+<progress
+value="{{ result.confidence }}"
+max="100"
+style="width:100%;height:22px;">
+</progress>
+
+</div>
+
+{% endif %}
+
+</main>
+
+</div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,pa',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+if(localStorage.getItem("theme")==="dark"){
+    document.body.classList.add("dark-mode");
+}
+</script>
+</body>
+
+</html>
